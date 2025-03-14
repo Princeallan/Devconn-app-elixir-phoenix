@@ -17,7 +17,8 @@ defmodule Myapp.Application do
       # Start a worker by calling: Myapp.Worker.start_link(arg)
       # {Myapp.Worker, arg},
       # Start to serve requests, typically the last entry
-      MyappWeb.Endpoint
+      MyappWeb.Endpoint,
+      {Myapp.RateLimiter, []}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
