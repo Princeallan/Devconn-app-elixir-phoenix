@@ -15,12 +15,20 @@ defmodule MyappWeb.Router do
 
   pipeline :api do
     plug :accepts, ["json"]
+    plug Myapp.Plugs.RateLimit
+    plug Myapp.Plugs.ApiLogger
   end
 
   scope "/", MyappWeb do
     pipe_through :browser
 
     get "/", PageController, :home
+  end
+
+  scope "/api", MyappWeb do
+    pipe_through :api
+
+    get "/test", ApiController, :test
   end
 
   # Other scopes may use custom stacks.
